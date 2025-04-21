@@ -1,0 +1,23 @@
+{
+  "name": "web-scraping-job-test",
+  "module": "app.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun run app.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/jsdom": "^21.1.7",
+    "@types/express": "^5.0.1"
+
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "axios": "^1.8.4",
+    "express": "^5.1.0",
+    "jsdom": "^26.1.0"
+  }
+}
