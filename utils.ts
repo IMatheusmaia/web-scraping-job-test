@@ -1,22 +1,32 @@
-import axios from "axios";
 import jsdom from "jsdom";
+import axios, { AxiosHeaders, type AxiosHeaderValue } from "axios";
+import puppeteer, { Browser, type Cookie } from 'puppeteer';
+import type { AxiosRequestConfig } from "axios";
 
-export async function fetchPage (value: string) {
+export async function fetchPage (value: string):Promise<void> {
+  
+  const browser:Browser = await puppeteer.launch();
+  const agent:string = await browser.userAgent();
+  const browserCookies:Cookie[] = await browser.cookies();
+  
   try {
+    const headerValues:AxiosHeaderValue = new AxiosHeaders({
+      'User-Agent': agent,
+      'Cookie': browserCookies.map((cookie:Cookie) => `${cookie.name}=${cookie.value}`).join('; ')
+    });
+  
 
-    const config = {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-        'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Referer': 'https://www.amazon.com.br/',
+    const axiosConfig: AxiosRequestConfig = {
+      headers : {
+        ...headerValues,
+        'Accept': '*/*',
+        'Referer': 'https://www.amazon.com',
         'Cache-Control': 'max-age=0',
         'Connection': 'keep-alive'
       }
     };
 
-    const response = await axios.get(`https://www.amazon.com.br/s?k=${value}`, {...config});
+    const response = await axios.get(`https://www.amazon.com/s?k=${value}`, {...axiosConfig});
 
     const dom = new jsdom.JSDOM(response.data);
     const document = dom.window.document;
@@ -26,7 +36,9 @@ export async function fetchPage (value: string) {
       throw new Error('No products found for this selector');
     }
 
-    console.log(Array.from(products))
+    console.log(Array.from(products).map((product) => product.textContent))
+
+    await browser.close();
     
   } catch (error) {
     console.error(error);
