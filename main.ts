@@ -24,7 +24,7 @@ form?.addEventListener('submit', async (event) => {
 
   try {
     const response = await axios.get(`http://localhost:3000/api/scrape?keyword=${keyword}`);
-
+    
     if (response.status === 200) {
       const products = Array.isArray(response.data) ? response.data : [response.data];
       renderCards(products);
