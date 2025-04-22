@@ -1,0 +1,82 @@
+/* Import da fonte Roboto do Google Fonts para um visual moderno e limpo */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+/* Define variáveis CSS globais para facilitar mudanças na personalização futura */
+:root {
+  --primary-color: #007bff; /* Cor principal para botões e destaques */
+  --secondary-color: #6c757d; /* Cor secundária para placeholders e textos */
+  --background-color: #f8f9fa; /* Fundo claro para a página */
+  --text-color: #212529; /* Cor padrão do texto */
+}
+
+/* Estiliza o body para centralizar o conteúdo verticalmente e horizontalmente */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Estiliza o contêiner #app com aparência de cartão */
+#app {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Estiliza o formulário com layout de coluna para melhor legibilidade */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estiliza o rótulo com espaçamento e destaque */
+label {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* Estiliza o campo de entrada com bordas sutis e design moderno */
+input[type="text"] {
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+/* Adiciona efeito de foco ao campo de entrada */
+input[type="text"]:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* Estiliza o texto do placeholder */
+input[type="text"]::placeholder {
+  color: var(--secondary-color);
+}
+
+/* Estiliza o botão com aparência clicável e moderna */
+button {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Adiciona efeito de hover ao botão */
+button:hover {
+  background-color: #0056b3;
+}

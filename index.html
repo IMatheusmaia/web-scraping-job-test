@@ -1,22 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <form>
-    <input
-      type="text"
-      id="search"
-      name="search-product"
-      required
-      minlength="1"
-      maxlength="50"
-      placeholder="Type a product name"
-    />
-    <button type="submit">Scrap</button>
-  </form>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="globalStyle.css">
+    <title>Web Scrapper</title>
+  </head>
+  <body>
+    <div id="app">
+      <form>
+        <label for="search">Search:</label>
+        <input
+          type="text"
+          id="search"
+          name="search"
+          required
+          minlength="2"
+          maxlength="50"
+          placeholder="Type a product name in English"
+        />
+        <button type="submit">Scrap</button>
+      </form>
+    </div>
+    <script type="module" src="main.ts"></script>
+  </body>
 </html>
