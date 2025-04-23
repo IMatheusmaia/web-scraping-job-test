@@ -67,7 +67,11 @@ const domHandle = async ({ data }:AxiosResponse): Promise<Product[]> => {
 export async function fetchPage (value: string):Promise<Product[]> {
   
   // criando uma instância de navegador do pupperteer para simular um navegador real com user-agent e cookies válidos, para contornar o bloqueio de webscrapping da amazon 
-  const browser:Browser = await puppeteer.launch();
+  const browser:Browser = await puppeteer.launch(
+    {
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    }
+  );
   const agent:string = await browser.userAgent();
   const browserCookies:Cookie[] = await browser.cookies();
 
